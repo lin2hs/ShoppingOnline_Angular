@@ -1,0 +1,27 @@
+<div class="col-md-6">
+  <h2 class="text-center">Create supplier</h2>
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input formControlName="name" placeholder="name" name="name" class="form-control" id="name">
+      <label for="company">Company:</label>
+      <input formControlName="company" placeholder="company" name="company" class="form-control" id="company">
+      <label for="address">Address:</label>
+      <input formControlName="address" placeholder="address" name="address" class="form-control" id="address">
+      <label for="city">City:</label>
+      <input formControlName="city" placeholder="city" name="city" class="form-control" id="city">
+      <label for="phone">Phone:</label>
+      <input formControlName="phone" placeholder="phone" name="phone" class="form-control" id="phone">
+      <label for="fax">Fax:</label>
+      <input formControlName="fax" placeholder="fax" name="fax" class="form-control" id="fax">
+      <label for="valid">Status:</label>
+      <select formControlName="valid" placeholder="valid" name="valid" class="form-control" id="valid">
+        <option value="true">Available</option>
+        <option value="false">Disable</option>
+      </select>
+    </div>
+    <button class="btn btn-success">Create</button>
+    <a class="btn btn-danger" href="../supplier/index"> Supplier list</a>
+  </form>
+
+</div>

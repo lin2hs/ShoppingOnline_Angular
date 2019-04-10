@@ -1,0 +1,41 @@
+<div class="col-md-6" style="max-width: 100%;">
+  <h2> Order list </h2>
+  <button class="btn btn-info" (click)="addOrder()"> Create an order</button>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="hidden">ID</th>
+      <th>User</th>
+      <th>Order date</th>
+      <th>Description</th>
+      <th>Shipping</th>
+      <th>Status</th>
+      <th>Latest modify</th> 
+      <th colspan="2">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let order of orders">
+      <td class="hidden">{{order.id}}</td>
+      <td>{{order.userId}}</td>
+      <td>{{order.orderDate | date: 'dd-MM-yyyy HH:mm'}}</td>
+      <td>{{order.description}}</td>
+      <td [ngSwitch]="oder.shipped">
+        <span *ngSwitchCase="true">Delivered</span>
+        <span *ngSwitchCase="false">Not yet</span>
+      </td>
+      <td [ngSwitch]="order.valid">
+        <span *ngSwitchCase="true">Available</span>
+        <span *ngSwitchCase="false">Disable</span>
+      </td>
+      <td>{{order.modify | date: 'dd-MM-yyyy HH:mm'}}</td>
+      <td>
+        <button class="btn btn-primary" (click)="editOrder(order)" style="margin-right: 20px"> Edit</button>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="deleteOrder(order)"> Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

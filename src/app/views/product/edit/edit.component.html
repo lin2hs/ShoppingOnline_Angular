@@ -1,0 +1,56 @@
+<div class="col-md-6">
+  <h2 class="text-center">Update product</h2>
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    
+    <div class="form-group">
+      <label for="id">ID:</label>
+      <input formControlName="id" placeholder="id" name="id" class="form-control" id="id" readonly>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input formControlName="name" placeholder="name" name="name" class="form-control" id="name">
+      
+      <label for="description">Description:</label>
+      <input formControlName="description" placeholder="description" name="description" class="form-control" id="description">
+
+      <label for="price">Price:</label>
+      <input formControlName="price" placeholder="price" name="price" class="form-control" id="price">
+
+      <label for="quantity">Amount:</label>
+      <input formControlName="quantity" placeholder="quantity" name="quantity" class="form-control" id="quantity">
+
+      <label for="thumbnail">Image:</label>
+      <input formControlName="thumbnail" placeholder="thumbnail" name="thumbnail" class="form-control" id="thumnail">
+
+      <label for="category">Category:</label>
+      <select class="form-control" formControlName="category" name="category" id="category">
+        <option value="0">--Select category--</option>
+        <option *ngFor="let category of categories" value={{category.id}}>
+            {{category.name}}
+        </option>
+      </select>
+    
+      <label for="supplier">Supplier:</label>
+      <select class="form-control" formControlName="supplier" name="supplier" id="supplier" >
+        <option value="0">--Select supplier--</option>
+        <option *ngFor="let supplier of suppliers" value={{supplier.id}}>
+            {{supplier.name}}
+        </option>
+      </select>
+      
+      <label for="valid">Status:</label>
+      <select formControlName="valid" placeholder="valid" name="valid" class="form-control" id="valid">
+        <option value="true">Available</option>
+        <option value="false">Disable</option>
+      </select>
+
+      <label for="modify">Modify:</label>
+      <input formControlName="modify" placeholder="modify" name="modify" class="form-control" id="modify" readonly>
+   
+    </div>
+
+    <button class="btn btn-success">Update</button>
+    <a class="btn btn-danger" href="../product/index"> Product list</a>
+  </form>
+</div>

@@ -1,0 +1,56 @@
+<div class="col-md-12">
+  <h2> Product list </h2>
+  <button class="btn btn-info" (click)="addProduct()"> Create a product</button>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="hidden">ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Amount</th>
+        <!-- <th>Category</th>
+        <th>Supplier</th> -->
+        <th>Status</th>
+        <th>Latest modify</th>
+        <th colspan="3">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td class="hidden">{{product.id}}</td>
+        <td>{{product.name}}</td>
+
+        <td>{{product.description}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.quantity}}</td>
+
+        <!-- <td *ngIf="product.category != null; else elseBlockCategory">{{product.category.name}}</td>
+        <ng-template #elseBlockCategory>
+          <td>N/A</td>
+        </ng-template>
+
+
+        <td *ngIf="product.supplier != null; else elseBlockSupplier">{{product.supplier.name}}</td>
+        <ng-template #elseBlockSupplier>
+          <td>N/A</td>
+        </ng-template> -->
+
+        <td [ngSwitch]="product.valid">
+          <span *ngSwitchCase="true">Available</span>
+          <span *ngSwitchCase="false">Disable</span>
+        </td>
+        <td>{{product.modify | date: 'dd-MM-yyyy HH:mm'}}</td>
+        <td>
+          <button class="btn btn-primary" (click)="detailProduct(product)" style="margin-right: 20px"> Detail</button>
+        </td>
+        <td>
+          <button class="btn btn-info" (click)="editProduct(product)"> Edit</button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteProduct(product)"> Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

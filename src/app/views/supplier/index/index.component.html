@@ -1,0 +1,42 @@
+<div class="col-md-6" style="max-width: 100%;">
+  <h2> Supplier list </h2>
+  <button class="btn btn-info" (click)="addSupplier()"> Create a supplier</button>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="hidden">ID</th>
+      <th>Name</th>   
+      <th>Company</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>Phone</th>
+      <th>Fax</th>
+      <th>Status</th>
+      <th>Latest modify</th> 
+      <th colspan="2">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let supplier of suppliers">
+      <td class="hidden">{{supplier.id}}</td>
+      <td>{{supplier.name}}</td>
+      <td>{{supplier.company}}</td>
+      <td>{{supplier.address}}</td>
+      <td>{{supplier.city}}</td>
+      <td>{{supplier.phone}}</td>
+      <td>{{supplier.fax}}</td>
+      <td [ngSwitch]="supplier.valid">
+        <span *ngSwitchCase="true">Available</span>
+        <span *ngSwitchCase="false">Disable</span>
+      </td>
+      <td>{{supplier.modify | date: 'dd-MM-yyyy HH:mm'}}</td>
+      <td>
+        <button class="btn btn-primary" (click)="editSupplier(supplier)" style="margin-right: 20px"> Edit</button>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="deleteSupplier(supplier)"> Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
