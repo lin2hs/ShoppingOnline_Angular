@@ -43,8 +43,7 @@ export class SupplierEditComponent implements OnInit {
 
   onSubmit() {
     this.supplierService.update(this.editForm.value)
-      .pipe(first())
-      .subscribe(
+      .then(
         data => {
           this.router.navigate(['supplier/index']);
         },

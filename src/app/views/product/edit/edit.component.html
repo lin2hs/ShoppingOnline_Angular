@@ -23,17 +23,15 @@
       <label for="thumbnail">Image:</label>
       <input formControlName="thumbnail" placeholder="thumbnail" name="thumbnail" class="form-control" id="thumnail">
 
-      <label for="category">Category:</label>
-      <select class="form-control" formControlName="category" name="category" id="category">
-        <option value="0">--Select category--</option>
+      <label for="categoryId">Category:</label>
+      <select class="form-control" formControlName="categoryId" name="categoryId" id="categoryId">
         <option *ngFor="let category of categories" value={{category.id}}>
             {{category.name}}
         </option>
       </select>
     
-      <label for="supplier">Supplier:</label>
-      <select class="form-control" formControlName="supplier" name="supplier" id="supplier" >
-        <option value="0">--Select supplier--</option>
+      <label for="supplierId">Supplier:</label>
+      <select class="form-control" formControlName="supplierId" name="supplierId" id="supplierId" >
         <option *ngFor="let supplier of suppliers" value={{supplier.id}}>
             {{supplier.name}}
         </option>

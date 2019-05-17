@@ -24,7 +24,7 @@ export class ProductIndexComponent implements OnInit {
 
   deleteProduct(product: Product): void {
     this.productService.delete(product.id)
-      .subscribe( data => {
+      .then( data => {
         this.products = this.products.filter(u => u !== product);
       })
   };

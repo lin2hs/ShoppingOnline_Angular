@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Token } from '@angular/compiler';
 import { CookieService } from 'ngx-cookie-service';
+import { reject } from 'q';
 
 @Injectable()
 export class ApiService {
@@ -14,8 +15,7 @@ export class ApiService {
         if (this.cookieService.check('Authorization')) this.token = this.cookieService.get('Authorization');
     }
     login(url: string, data: any) {
-        var s = this.cookieService.get('Authorization');
-        alert(s);
+        // var s = this.cookieService.get('Authorization');
         return new Promise<Response>((resolve, reject) => {
             let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
             headers.append('Authorization', this.token);
@@ -25,12 +25,24 @@ export class ApiService {
                     if (res.status == 200) {
                         resolve(res);
                     } else {
+                        // alert("");
                         reject("Error");
                     }
                 }).catch(err => {
+                    alert("Wrong username or password");
                     reject(err);
                 });
-        });
+        })
+    }
+
+    postWithoutAuth(url: string, data: any) {
+        return new Promise((resolve, reject) => {
+            this.http.post(url, data).toPromise().then(() => {
+                resolve();
+            }).catch(err => {
+                reject(err);
+            })
+        })
     }
 
     post(url: string, data: any) {
@@ -50,7 +62,7 @@ export class ApiService {
                 }).catch(err => {
                     reject(err);
                 });
-        });
+        })
     }
 
     get(url: string) {
@@ -70,7 +82,7 @@ export class ApiService {
                 }).catch(err => {
                     reject(err);
                 });
-        });
+        })
     }
 
     //delete
@@ -92,7 +104,7 @@ export class ApiService {
                 }).catch(err => {
                     reject(err);
                 });
-        });
+        })
     }
 
     put(url: string, data: any) {
@@ -112,6 +124,6 @@ export class ApiService {
                 }).catch(err => {
                     reject(err);
                 });
-        });
+        })
     }
 }

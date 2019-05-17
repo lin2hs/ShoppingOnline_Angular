@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { OrderService } from "../../../services/order.service";
 //import {first} from "rxjs/operators";
 import { Router } from "@angular/router";
+// import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'order-app-create',
@@ -21,16 +22,20 @@ export class OrderCreateComponent implements OnInit {
       description: ['', Validators.required],
       valid: [],
       shipped: [],
-      orderDate: [],
+      orderdate: [],
       modify: [],
-      userId: []
+      userid: []
     });
 
   }
 
+  // get f() { return this.addForm.controls; }
+
   onSubmit() {
+    // let userOrder: User = new User();
+    // userOrder = this.f.userid.value;
     this.orderService.create(this.addForm.value)
-      .subscribe(data => {
+      .then(data => {
         this.router.navigate(['order/index']);
       });
   }

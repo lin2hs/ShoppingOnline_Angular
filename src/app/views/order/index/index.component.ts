@@ -16,14 +16,14 @@ export class OrderIndexComponent implements OnInit {
 
   ngOnInit() {
     this.orderService.get()
-      .subscribe( data => {
+      .subscribe(data => {
         this.orders = data;
       });
   }
 
   deleteOrder(order: Order): void {
     this.orderService.delete(order.id)
-      .subscribe( data => {
+      .then(data => {
         this.orders = this.orders.filter(u => u !== order);
       })
   };

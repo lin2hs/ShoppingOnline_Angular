@@ -1,42 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Supplier } from "../models/supplier.model";
+import { Voucher } from "../models/voucher.model";
 import { ApiService } from "./api.service";
 
 @Injectable()
-export class SupplierService {
-  // constructor(private http: HttpClient) { }
-  // baseUrl: string = 'http://localhost:8090/ashop/rest/api/supplier';
-
-  // get() {
-  //   return this.http.get<Supplier[]>(this.baseUrl);
-  // }
-
-  // getById(id: number) {
-  //   return this.http.get<Supplier>(this.baseUrl + '/' + id);
-  // }
-
-  // create(supplier: Supplier) {
-  //   return this.http.post(this.baseUrl, supplier);
-  // }
-
-  // update(supplier: Supplier) {
-  //   return this.http.put(this.baseUrl + '/' + supplier.id, supplier);
-  // }
-
-  // delete(id: number) {
-  //   return this.http.delete(this.baseUrl + '/' + id);
-  // }
+export class VoucherService {
 
   constructor(private http: HttpClient, private apiService:ApiService) { }
-  baseUrl: string = 'http://localhost:8090/ashop/rest/api/supplier';
+  baseUrl: string = 'http://localhost:8090/ashop/rest/api/voucher';
 
   get() {
-    return this.http.get<Supplier[]>(this.baseUrl);
+    return this.http.get<Voucher[]>(this.baseUrl);
   }
 
   getById(id: number) {
-    return this.http.get<Supplier>(this.baseUrl + '/' + id);
+    return this.http.get<Voucher>(this.baseUrl + '/' + id);
   }
 
   // create(supplier: Supplier) {
@@ -52,7 +30,7 @@ export class SupplierService {
   // }
 
   
-  create(supplier: Supplier){
+  create(supplier: Voucher){
     return new Promise((resolve, reject) => {
       this.apiService.post(this.baseUrl,supplier).then(() => {
         resolve();
@@ -63,7 +41,7 @@ export class SupplierService {
   }
   
 
-  update(supplier: Supplier) {
+  update(supplier: Voucher) {
     // return this.http.put(this.baseUrl + '/' + supplier.id, supplier);
     return new Promise((resolve, reject) => {
       this.apiService.put(this.baseUrl + '/' + supplier.id,supplier).then(() => {

@@ -32,7 +32,7 @@ export class SupplierCreateComponent implements OnInit {
 
   onSubmit() {
     this.supplierService.create(this.addForm.value)
-      .subscribe(data => {
+      .then(data => {
         this.router.navigate(['supplier/index']);
       });
   }

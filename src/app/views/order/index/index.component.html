@@ -17,10 +17,10 @@
     <tbody>
     <tr *ngFor="let order of orders">
       <td class="hidden">{{order.id}}</td>
-      <td>{{order.userId}}</td>
-      <td>{{order.orderDate | date: 'dd-MM-yyyy HH:mm'}}</td>
+      <td>{{order.userid.name}}</td>
+      <td>{{order.orderdate | date: 'dd-MM-yyyy HH:mm'}}</td>
       <td>{{order.description}}</td>
-      <td [ngSwitch]="oder.shipped">
+      <td [ngSwitch]="order.shipped">
         <span *ngSwitchCase="true">Delivered</span>
         <span *ngSwitchCase="false">Not yet</span>
       </td>

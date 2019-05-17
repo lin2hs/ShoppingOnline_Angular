@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { CategoryService } from "../../../services/category.service";
-import { Category } from "../../../models/category.model";
+import { VoucherService } from "../../../services/voucher.service";
+import { Voucher } from "../../../models/voucher.model";
 
 @Component({
-  selector: 'category-app-index',
+  selector: 'voucher-app-index',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.css']
 })
-export class CategoryIndexComponent implements OnInit {
+export class VoucherComponent implements OnInit {
 
-  categories: Category[];
+  categories: Voucher[];
 
-  constructor(private router: Router, private categoryService: CategoryService) { }
+  constructor(private router: Router, private categoryService: VoucherService) { }
 
   ngOnInit() {
     this.categoryService.get()
@@ -21,16 +21,16 @@ export class CategoryIndexComponent implements OnInit {
       });
   }
 
-  deleteCategory(category: Category): void {
+  deleteCategory(category: Voucher): void {
     this.categoryService.delete(category.id)
       .then( data => {
         this.categories = this.categories.filter(u => u !== category);
       })
   };
 
-  editCategory(category: Category): void {
-    localStorage.removeItem("editCategoryId");
-    localStorage.setItem("editCategoryId", category.id.toString());
+  editCategory(category: Voucher): void {
+    localStorage.removeItem("editVoucherId");
+    localStorage.setItem("ediVoucheryId", category.id.toString());
     this.router.navigate(['category/edit']);
   };
 

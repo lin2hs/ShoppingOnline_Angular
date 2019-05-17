@@ -36,9 +36,9 @@ export class ProductCreateComponent implements OnInit {
       price: [],
       quantity: [],
       thumbnail: [],
-      // cateid: [0], // gán giá trị ban đầu là 0
+      categoryId: [],
       category: [],
-      // supplierid: [0], // gán giá trị ban đầu là 0
+      supplierId: [],
       supplier: [],
       valid: [],
       modify: []
@@ -86,18 +86,18 @@ export class ProductCreateComponent implements OnInit {
 
     */
 
-    // // Lấy lại đối tượng category thông qua cateid được chọn
-    // let category: Category = new Category();
-    // category = this.categories.find(x => x.id == this.addForm.value.cateid);
-    // this.addForm.patchValue({ 'category': category });
+    // Lấy lại đối tượng category thông qua cateid được chọn
+    let category: Category = new Category();
+    category = this.categories.find(x => x.id == this.addForm.value.categoryId);
+    this.addForm.patchValue({ 'category': category });
 
-    // // Lấy lại đối tượng supplier thông qua supplierid được chọn
-    // let supplier: Supplier = new Supplier();
-    // supplier = this.suppliers.find(x => x.id == this.addForm.value.supplierid);
-    // this.addForm.patchValue({ 'supplier': supplier });
+    // Lấy lại đối tượng supplier thông qua supplierid được chọn
+    let supplier: Supplier = new Supplier();
+    supplier = this.suppliers.find(x => x.id == this.addForm.value.supplierId);
+    this.addForm.patchValue({ 'supplier': supplier });
 
     this.productService.create(this.addForm.value)
-      .subscribe(data => {
+      .then(data => {
         this.router.navigate(['product/index']);
       });
   }

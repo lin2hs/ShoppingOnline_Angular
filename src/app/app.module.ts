@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 
 import { AppBootstrapModule } from './app-bootstrap.module';
 
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { HttpModule } from '@angular/http';
 
 import { CategoryIndexComponent } from "./views/category/index/index.component";
 import { CategoryCreateComponent } from './views/category/create/create.component';
@@ -22,11 +23,16 @@ import { ProductIndexComponent } from "./views/product/index/index.component";
 import { ProductDetailComponent } from './views/product/detail/detail.component';
 import { ProductCreateComponent } from './views/product/create/create.component';
 import { ProductEditComponent } from './views/product/edit/edit.component';
+import { SignInComponent } from './views/sign-in/sign-in.component';
+import { SignUpComponent } from './views/sign-up/sign-up.component';
 
 import { CategoryService } from "./services/category.service";
 import { SupplierService } from "./services/supplier.service";
 import { OrderService } from "./services/order.service";
 import { ProductService } from "./services/product.service";
+import { UserService } from "./services/user.service";
+import { CookieService } from 'ngx-cookie-service';
+import { ApiService } from './services/api.service';
 
 @NgModule({
   declarations: [
@@ -43,16 +49,20 @@ import { ProductService } from "./services/product.service";
     ProductIndexComponent,
     ProductDetailComponent,
     ProductCreateComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    SignInComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     AppBootstrapModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [CategoryService, SupplierService, OrderService, ProductService],
+  providers: [CategoryService, SupplierService, OrderService, ProductService, UserService, ApiService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

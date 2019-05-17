@@ -23,7 +23,7 @@ export class SupplierIndexComponent implements OnInit {
 
   deleteSupplier(supplier: Supplier): void {
     this.categoryService.delete(supplier.id)
-      .subscribe( data => {
+      .then( data => {
         this.suppliers = this.suppliers.filter(u => u !== supplier);
       })
   };

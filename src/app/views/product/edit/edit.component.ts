@@ -19,8 +19,6 @@ export class ProductEditComponent implements OnInit {
 
   categories: Category[];
   suppliers: Supplier[];
-  defaultCate: [];
-  defaultSup: [];
   editForm: FormGroup;
   modifyDate: Date;
   constructor(private formBuilder: FormBuilder, private router: Router, private productService: ProductService, private categoryService: CategoryService, private supplierService: SupplierService) { }
@@ -42,6 +40,8 @@ export class ProductEditComponent implements OnInit {
       valid: [],
       category: [],
       supplier: [],
+      supplierId: [],
+      categoryId: [],
     });
     //Load data to input into select tag
     this.categoryService.get().subscribe(data => {
@@ -55,29 +55,27 @@ export class ProductEditComponent implements OnInit {
       .subscribe(data => {
         this.editForm.patchValue({
           id: data.id, name: data.name, description: data.description,
-          price: data.price, quantity: data.quantity, thumbnail: data.thumbnail,
-          category: data.category, supplier: data.supplier, valid: data.valid, modify: data.modify
+          price: data.price, quantity: data.quantity, thumbnail: data.thumbnail, categoryId: data.category.id,
+          category: data.category, supplierId: data.supplier.id, supplier: data.supplier,
+          valid: data.valid, modify: data.modify
         });
         this.modifyDate = data.modify;
-        this.defaultCate = data.category.id;
-        this.defaultSup = data.supplier.id;
       });
   }
 
   onSubmit() {
-    // // Lấy lại đối tượng category thông qua cateid được chọn
-    // let category:Category = new Category();
-    // category = this.categories.find(x => x.id == this.editForm.value.cateid);
-    // this.editForm.patchValue({'category': category});
+    // Lấy lại đối tượng category thông qua cateid được chọn
+    let category: Category = new Category();
+    category = this.categories.find(x => x.id == this.editForm.value.categoryId);
+    this.editForm.patchValue({ 'category': category });
 
-    // // Lấy lại đối tượng supplier thông qua supplierid được chọn
-    // let supplier:Supplier = new Supplier();
-    // supplier = this.suppliers.find( x => x.id == this.editForm.value.supplierid);
-    // this.editForm.patchValue({'supplier': supplier});
+    // Lấy lại đối tượng supplier thông qua supplierid được chọn
+    let supplier: Supplier = new Supplier();
+    supplier = this.suppliers.find(x => x.id == this.editForm.value.supplierId);
+    this.editForm.patchValue({ 'supplier': supplier });
 
     this.productService.update(this.editForm.value)
-      .pipe(first())
-      .subscribe(
+      .then(
         data => {
           this.router.navigate(['product/index']);
         },

@@ -14,6 +14,9 @@ import { ProductIndexComponent } from "./views/product/index/index.component";
 import { ProductDetailComponent } from './views/product/detail/detail.component';
 import { ProductCreateComponent } from './views/product/create/create.component';
 import { ProductEditComponent } from './views/product/edit/edit.component';
+import { SignInComponent } from './views/sign-in/sign-in.component';
+import { SignUpComponent } from './views/sign-up/sign-up.component';
+import { VoucherComponent } from './views/voucher/index/index.component'
 
 const routes: Routes = [
   { path: 'category/index', component: CategoryIndexComponent },
@@ -28,7 +31,9 @@ const routes: Routes = [
   { path: 'product/index', component: ProductIndexComponent },
   { path: 'product/detail', component: ProductDetailComponent },
   { path: 'product/create', component: ProductCreateComponent },
-  { path: 'product/edit', component: ProductEditComponent }
+  { path: 'product/edit', component: ProductEditComponent },\
+  { path: 'login', component: SignInComponent },
+  { path: 'register', component: SignUpComponent }
 ];
 
 @NgModule({

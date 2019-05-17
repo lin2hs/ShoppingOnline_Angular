@@ -3,7 +3,7 @@ import { OrderService } from "../../../services/order.service";
 import { Router } from "@angular/router";
 //import {Category} from "../../../models/category.model";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { first } from "rxjs/operators";
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'order-app-edit',
@@ -16,6 +16,7 @@ export class OrderEditComponent implements OnInit {
   editForm: FormGroup;
   createdDate: Date;
   modifyDate: Date;
+  userOrder: User;
   constructor(private formBuilder: FormBuilder, private router: Router, private orderService: OrderService) { }
   ngOnInit() {
     let orderId = localStorage.getItem("editOrderId");
@@ -29,22 +30,22 @@ export class OrderEditComponent implements OnInit {
       description: ['', Validators.required],
       valid: [],
       shipped: [],
-      orderDate: [],
+      orderdate: [],
       modify: [],
-      userId: []
+      userid: []
     });
     this.orderService.getById(+orderId)
       .subscribe(data => {
-        this.editForm.setValue(data);
+        this.userOrder = data.userid;
         this.modifyDate = data.modify;
-        this.createdDate = data.orderDate;
+        this.createdDate = data.orderdate;
+        this.editForm.setValue(data);
       });
   }
 
   onSubmit() {
     this.orderService.update(this.editForm.value)
-      .pipe(first())
-      .subscribe(
+      .then(
         data => {
           this.router.navigate(['order/index']);
         },
